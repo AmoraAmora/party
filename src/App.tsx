@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useQuery } from '@apollo/client';
+import React, {Component, useEffect, useState} from 'react';
 import './App.css';
+import { CharGet } from './character'
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const {data,loading, error} = useQuery(CharGet);
+  const [characters , setCharacters] = useState([]);
+
+  useEffect(()=>{
+    if(!loading){
+      setCharacters(data.characters)
+    }
+
+  },[data])
+  
+  return (    
+    
+      <div className="App">
+        <form>
+          <input type="text"/>
+
+        </form>  
+        <div className="Characters">
+          {characters.map( (character : any) => 
+          <div className="character">
+            <img src={character.results.image} alt={character.results.name}/>
+          </div>
+          )}
+        </div>
+      </div>
   );
 }
 
