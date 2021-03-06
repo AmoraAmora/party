@@ -3,6 +3,8 @@ import React, {Component, useEffect, useState} from 'react';
 import './App.css';
 import { CharGet } from './character'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
+import { stringify } from 'querystring';
+import { Interface } from 'readline';
 
 const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',
@@ -11,7 +13,7 @@ const client = new ApolloClient({
 
 function App() {
   const {data,loading, error} = useQuery(CharGet);
-  const [characters , setCharacters] = useState([]);
+  const [characters , setCharacters] = useState<Array<Characters>>([]);
 
   useEffect(()=>{
     if(!loading){
@@ -19,6 +21,16 @@ function App() {
     }
 
   },[data])
+
+  interface Characters {
+    character:{
+      results: Array<{name:string;image:string}>
+    };
+    results: Array<{ name:string; image:string }>;
+    name: string;
+    image: string;
+  };
+
   
   return (    
     <ApolloProvider client={client}>
@@ -27,11 +39,11 @@ function App() {
           <input type="text"/>
 
         </form>  
-        <div className="Characters">
+        <div className="Chars">
           {characters.map( character => 
-          <div className="character">
-            <img src={character.results.image} alt={character.results.name}/>
-          </div>
+            {<div className="Char">
+               <img src={character.results.image} alt={character.results.name}/>
+            </div>}
           )}
         </div>
       </div>
