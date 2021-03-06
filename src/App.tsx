@@ -5,6 +5,7 @@ import { CharGet } from './character'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 import { stringify } from 'querystring';
 import { Interface } from 'readline';
+import { type } from 'os';
 
 const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',
@@ -22,14 +23,20 @@ function App() {
 
   },[data])
 
-  interface Characters {
+  /*interface Characters {
     character:{
       results: Array<{name:string;image:string}>
     };
-    results: Array<{ name:string; image:string }>;
-    name: string;
-    image: string;
-  };
+    results: Array<{name:string;image:string}>;
+    name:string;
+    image:string;
+  };*/
+  
+  type Characters = {
+    name:string;
+    image:string;
+    results: Characters;
+  }
 
   
   return (    
