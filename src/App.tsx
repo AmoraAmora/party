@@ -14,7 +14,7 @@ const client = new ApolloClient({
 
 function App() {
   const {data,loading, error} = useQuery(CharGet);
-  const [characters , setCharacters] = useState<Array<Characters>>([]);
+  const [characters , setCharacters] = useState<Characters[]>([]);
 
   useEffect(()=>{
     if(!loading){
@@ -46,9 +46,9 @@ function App() {
           <input type="text"/>
 
         </form>  
-        <div className="Chars">
+        <div className="Characters">
           {characters.map( character => 
-            {<div className="Char">
+            {<div className="Character">
                <img src={character.results.image} alt={character.results.name}/>
             </div>}
           )}
