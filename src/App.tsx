@@ -1,11 +1,9 @@
-import { useQuery } from '@apollo/client';
+
 import React, {Component, useEffect, useState} from 'react';
+import { useQuery } from '@apollo/client';
 import './App.css';
 import { CharGet } from './character'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
-import { stringify } from 'querystring';
-import { Interface } from 'readline';
-import { type } from 'os';
 
 const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',
@@ -13,30 +11,34 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const {data,loading, error} = useQuery(CharGet);
-  const [characters , setCharacters] = useState<Characters[]>([]);
 
-  useEffect(()=>{
+  /*useEffect(()=>{
     if(!loading){
       setCharacters(data.characters)
     }
 
-  },[data])
-
-  /*interface Characters {
-    character:{
-      results: Array<{name:string;image:string}>
-    };
-    results: Array<{name:string;image:string}>;
-    name:string;
-    image:string;
-  };*/
+  },[data])*/
   
-  type Characters = {
+  interface Characters {
     name:string;
     image:string;
     results: Characters;
   }
+
+  interface CharactersData {
+    characters: Characters[];
+  }
+
+  interface CharactersVars {
+    page: number;
+  }
+
+  const { loading, data } = useQuery<CharactersData, CharactersVars>(
+    CharGet,
+    { variables: { page: 1 } }
+  );
+  
+  const characters:Characters[] = data?.characters||[];
 
   
   return (    
@@ -46,11 +48,19 @@ function App() {
           <input type="text"/>
 
         </form>  
+        <tbody>
+            {data && data.characters.map(character => (
+              <tr>
+                <td>{character.results.image}</td>
+                <td>{character.results.name}</td>
+              </tr>
+            ))}
+          </tbody>
         <div className="Characters">
-          {characters.map( character => 
-            {<div className="Character">
+          {data && data.characters.map( character => {
+            return (<div className="Character">
                <img src={character.results.image} alt={character.results.name}/>
-            </div>}
+            </div>)}
           )}
         </div>
       </div>
