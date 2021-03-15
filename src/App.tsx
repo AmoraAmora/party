@@ -11,13 +11,6 @@ const client = new ApolloClient({
 });
 
 function App() {
-
-  /*useEffect(()=>{
-    if(!loading){
-      setCharacters(data.characters)
-    }
-
-  },[data])*/
   
   interface Characters {
     name:string;
@@ -38,7 +31,7 @@ function App() {
     { variables: { page: 1 } }
   );
   
-  const characters:Characters[] = data?.characters||[];
+  //const characters:Characters[] = data?.characters||[];
 
   
   return (    
@@ -48,16 +41,9 @@ function App() {
           <input type="text"/>
 
         </form>  
-        <tbody>
-            {data && data.characters.map(character => (
-              <tr>
-                <td>{character.results.image}</td>
-                <td>{character.results.name}</td>
-              </tr>
-            ))}
-          </tbody>
+      
         <div className="Characters">
-          {data && data.characters.map( character => {
+          {data&&data.characters.map( character => {
             return (<div className="Character">
                <img src={character.results.image} alt={character.results.name}/>
             </div>)}
