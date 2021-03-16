@@ -30,9 +30,10 @@ function App() {
         </form>  
              
         <div className="Characters">
-          {characters.map( character => (<div className="Character">
+          {characters.map( character => (
+          <div className="Character">
                <img src={character.image} alt={character.name}/>
-            </div>)
+          </div>)
           )}
         </div>
       </div>
