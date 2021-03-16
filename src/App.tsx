@@ -2,7 +2,7 @@
 import React, {Component, useEffect, useState} from 'react';
 import { useQuery } from '@apollo/client';
 import './App.css';
-import { CharGet } from './character'
+import { CHAR_GET } from './character'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 
 const client = new ApolloClient({
@@ -12,26 +12,27 @@ const client = new ApolloClient({
 
 function App() {
   
-  interface Characters {
-    name:string;
-    image:string;
-    results: Characters;
+  interface Character {
+    results: {
+      name:string;
+      image:string;
+    }
   }
 
-  interface CharactersData {
-    characters: Characters[];
+  interface Characters {
+    characters: Character[];
   }
 
   interface CharactersVars {
     page: number;
-  }
+  } 
 
-  const { loading, data } = useQuery<CharactersData, CharactersVars>(
-    CharGet,
+  const { loading, data } = useQuery<Characters, CharactersVars>(
+    CHAR_GET,
     { variables: { page: 1 } }
   );
   
-  //const characters:Characters[] = data?.characters||[];
+  const characters:Character[] = data?.characters||[];
 
   
   return (    
@@ -39,11 +40,10 @@ function App() {
       <div className="App">
         <form>
           <input type="text"/>
-
         </form>  
-      
+             
         <div className="Characters">
-          {data&&data.characters.map( character => {
+          {characters.map( character => {
             return (<div className="Character">
                <img src={character.results.image} alt={character.results.name}/>
             </div>)}
