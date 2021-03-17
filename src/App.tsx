@@ -22,7 +22,7 @@ function App() {
   //const characters : CharactersData[] = data?.characters||[];
 
   
-
+  
   return (    
     <ApolloProvider client={client}>
       <div className="App">
@@ -32,9 +32,9 @@ function App() {
              
 
         <div className="Characters">
-          {data&&data.characters.map( character => (
+          {data&&data.characters.results.map( result => (
           <div className="Character">
-               <h1>{character.results.map(result=>result.image)} </h1>
+               <img src={result.image} alt={result.name} />
           </div>)
           )}
           

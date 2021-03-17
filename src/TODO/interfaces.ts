@@ -8,7 +8,7 @@ export type Characters = {
 }
 
 export type CharactersData = {
-    characters:Characters[];
+    characters:Characters;
 }
 
 export interface CharactersVars {
