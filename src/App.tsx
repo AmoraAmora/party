@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import './App.css';
 import { CHAR_GET } from './character'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
-import { Characters, Character, CharactersVars } from './TODO/interfaces';
+import {  CharactersData, CharactersVars } from './TODO/interfaces';
 
 
 const client = new ApolloClient({
@@ -14,27 +14,30 @@ const client = new ApolloClient({
 
 function App() {
 
-  const { loading, data } = useQuery<Characters, CharactersVars>(
+  const { loading, data } = useQuery<CharactersData, CharactersVars>(
     CHAR_GET,
     { variables: { page: 1 } }
   );
   
-  const characters:Character[] = data?.results||[];
+  //const characters : CharactersData[] = data?.characters||[];
 
   
+
   return (    
     <ApolloProvider client={client}>
       <div className="App">
         <form>
           <input type="text"/>
-        </form>  
+        </form> 
              
+
         <div className="Characters">
-          {characters.map( character => (
+          {data&&data.characters.map( character => (
           <div className="Character">
-               <img src={character.image} alt={character.name}/>
+               <h1>{character.results.map(result=>result.image)} </h1>
           </div>)
           )}
+          
         </div>
       </div>
     </ApolloProvider>

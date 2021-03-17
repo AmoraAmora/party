@@ -1,12 +1,16 @@
-export type Character = {
-      name:string;
-      image:string;
-  }
+type Character = {
+    name: string;
+    image: string;
+}
 
 export type Characters = {
-    results: Character[];
-  }
+    results:Character[];
+}
+
+export type CharactersData = {
+    characters:Characters[];
+}
 
 export interface CharactersVars {
     page: number;
-  }
+};
