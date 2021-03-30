@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client'
-import { CHAR_GET } from './character'
-import { CharactersData, CharactersVars, Chars } from './interfaces';
+import { CHAR_GET } from './CharacterQuery'
+import { CharactersData, CharactersVars, Chars } from './CharactersInterfaces';
   
 const CharacterList: React.FC = ()=> { 
   const { data } = useQuery<CharactersData, CharactersVars>(
