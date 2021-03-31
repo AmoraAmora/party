@@ -1,8 +1,13 @@
 import React from 'react';
 import { useQuery } from '@apollo/client'
 import { CHAR_GET } from './CharacterQuery'
-import { CharactersData, CharactersVars, Chars } from './CharactersInterfaces';
-  
+import { Characters, CharactersData, CharactersVars, Chars } from './CharactersInterfaces';
+
+function CharacterItem (props) {
+
+  return <div className="Character">{props.value}</div>
+}
+
 const CharacterList: React.FC = ()=> { 
   const { data } = useQuery<CharactersData, CharactersVars>(
     CHAR_GET,
@@ -21,10 +26,10 @@ const CharacterList: React.FC = ()=> {
     return(
       <div>
       {data?.characters.results.map(character =>(
-        <div className="Character">
+        <CharacterItem key={character.name} value={character}>
         <img src={character.image} alt={character.name} />
         <button />
-      </div>
+        </CharacterItem>
       ))}
      </div>)
   }

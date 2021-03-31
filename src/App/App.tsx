@@ -1,8 +1,8 @@
 
 import React,{useState} from 'react';
 import './App.css';
-import FormComponent from '../Components/FormComponent';
-import  CharacterList from '../Components/CharacterList';
+import FormComponent from '../CharacterList/FormComponent';
+import  CharacterList from '../CharacterList/CharacterList';
 
 
 
