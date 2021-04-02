@@ -6,6 +6,7 @@ query GetChar($page:Int!){
       results{
         name
         image
+        id
       }
     }
   }

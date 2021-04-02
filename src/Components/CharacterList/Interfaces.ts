@@ -1,6 +1,7 @@
-type Character = {
+export type Character = {
     name: string;
     image: string;
+    id: number;
 }
 export type Characters = {
     results:Character[];
