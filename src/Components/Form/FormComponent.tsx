@@ -1,20 +1,16 @@
 import React,{useRef} from 'react';
+import CharacterList from '../CharacterList/function';
 
 interface FormComponentProps{
-    onAdd(title:string):void
+    onChangeTitle(value: string):void
 }
 
-const FormComponent: React.FC =()=>{
+const FormComponent: React.FC<FormComponentProps> =({onChangeTitle})=>{
     const ref = useRef<HTMLInputElement>(null)
-
-    const addHandler = (title:string) =>{
-        console.log('add new', title);
-    
-      }
 
     const KeyPressHandler = (event: React.KeyboardEvent) =>{
         if(event.key==='Enter'){
-            addHandler(ref.current!.value)
+            onChangeTitle(ref.current!.value)
              ref.current!.value=''
         }
     }
