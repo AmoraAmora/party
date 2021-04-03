@@ -1,9 +1,5 @@
 import React,{useRef} from 'react';
-import CharacterList from '../CharacterList/function';
-
-interface FormComponentProps{
-    onChangeTitle(value: string):void
-}
+import { FormComponentProps } from './interfaces';
 
 const FormComponent: React.FC<FormComponentProps> =({onChangeTitle})=>{
     const ref = useRef<HTMLInputElement>(null)

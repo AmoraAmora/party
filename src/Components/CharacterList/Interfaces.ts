@@ -13,7 +13,6 @@ export interface CharactersVars {
     page: number;
 };
 
-export interface Chars{
-    jsx: JSX.Element
-    name: string
-  }[]
+export interface listProps {
+    title: string;
+  }
