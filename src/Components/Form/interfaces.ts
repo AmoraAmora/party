@@ -1,3 +1,3 @@
 export interface FormComponentProps{
-    onChangeTitle(value: string):void
+  onChangeTitle(value: string):void
 }

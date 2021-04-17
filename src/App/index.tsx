@@ -1,28 +1,29 @@
-import React from "react";
-import "./style.css";
-import CharacterList from "../Components/CharacterList/function";
-import FormComponent from "../Components/Form/FormComponent";
+import React from 'react'
+import './style.css'
+import CharacterList from '../Components/CharacterList'
+import FormComponent from '../Components/Form'
+import { IProps, IState } from './interfaces'
 
-class App extends React.Component<{}, {title:string}> {
-
-  constructor(props:string){
-    super(props);
-    this.state = {title:""}
+class App extends React.Component<IProps, IState> {
+  constructor(props: object) {
+    super(props)
+    this.state = { title: '' }
     this.onChangeTitle = this.onChangeTitle.bind(this)
   }
-  onChangeTitle(value: string){
-    this.setState({title: value});
-  }
-  
-  render(){
-  return (
-    <div className="App">
-      <FormComponent onChangeTitle={this.onChangeTitle}/>
-      <CharacterList title={this.state.title}/>
-    </div>
-  )
-  }
-};
 
-export default App;
+  onChangeTitle(value: string) {
+    this.setState({ title: value })
+  }
 
+  render() {
+    const { title } = this.state
+    return (
+        <div className="App">
+            <FormComponent onChangeTitle={this.onChangeTitle} />
+            <CharacterList title={title} />
+        </div>
+    )
+  }
+}
+
+export default App

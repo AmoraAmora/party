@@ -1,18 +1,18 @@
 export type Character = {
-    name: string;
-    image: string;
-    id: number;
+  name: string;
+  image: string;
+  id: number;
 }
 export type Characters = {
-    results:Character[];
+  results: Character[];
 }
 export type CharactersData = {
-    characters:Characters;
+  characters: Characters;
 }
 export interface CharactersVars {
-    page: number;
-};
+  page: number;
+}
 
-export interface listProps {
-    title: string;
-  }
+export interface ListProps {
+  title: string;
+}
