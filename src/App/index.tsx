@@ -3,6 +3,7 @@ import './style.css'
 import CharacterList from '../Components/CharacterList'
 import FormComponent from '../Components/Form'
 import { IProps, IState } from './interfaces'
+import RickAndMorty from '../Components/RickAndMorty'
 
 class App extends React.Component<IProps, IState> {
   constructor(props: object) {
@@ -21,6 +22,7 @@ class App extends React.Component<IProps, IState> {
         <div className="App">
             <FormComponent onChangeTitle={this.onChangeTitle} />
             <CharacterList title={title} />
+            <RickAndMorty />
         </div>
     )
   }
