@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { CharactersData, CharactersVars, ListProps } from './Interfaces'
+import { CharactersData, CharactersVars } from './Interfaces'
 import CharacterItem from './CharacterItem'
 import { CHAR_GET } from './Query'
+import { useTitle } from '../../context'
 
-const CharacterList: React.FC<ListProps> = ({ title }) => {
+const CharacterList: React.FC = () => {
+  const title = useTitle()
+
   const { data } = useQuery<CharactersData, CharactersVars>(CHAR_GET, {
     variables: { page: 1 },
   })
-  const [Chars, setChars] = useState<string[]>([])
+  const [delitedChars, setDelitedChars] = useState<number[]>([])
 
-  const deleteChar = (name:string) => {
-    if (name !== 'Rick Sanchez' && name !== 'Morty Smith') {
-      setChars((prevChars) => {
-        prevChars.push(name)
+  const deleteChar = (id:number) => {
+    if (!delitedChars.includes(id)) {
+      setDelitedChars((prevChars) => {
+        prevChars.push(id)
         return prevChars
       })
     }
@@ -23,13 +26,14 @@ const CharacterList: React.FC<ListProps> = ({ title }) => {
       <div className="Characters">
           {data?.characters.results
             .filter(
-              (char) => char.name.indexOf(title, -1) !== 0
-            && char.name.indexOf(title) !== -1,
+              (char) => char.name.indexOf(title!.search, -1) !== 0
+            && char.name.indexOf(title!.search) !== -1,
             )
-            .filter((char) => !Chars.indexOf(char.name))
+            .filter((char) => !delitedChars.includes(char.id))
             .map((character) => (
                 <CharacterItem
-                  onDelet={deleteChar}
+                  onDelete={deleteChar}
+                  id={character.id}
                   key={character.id}
                   name={character.name}
                   image={character.image}

@@ -1,5 +1,6 @@
 export interface ItemProps {
+  id: number;
   name: string;
   image: string;
-  onDelet(name:string):any;
+  onDelete(id:number):any;
 }

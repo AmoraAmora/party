@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { FormComponentProps } from './interfaces'
+import { useTitle } from '../../context'
 
-const FormComponent: React.FC<FormComponentProps> = ({ onChangeTitle }) => {
+const FormComponent: React.FC = () => {
   const [title, setTitle] = useState('')
+
+  const { onChangeTitle } = useTitle()
 
   const changeHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value)
@@ -15,8 +17,12 @@ const FormComponent: React.FC<FormComponentProps> = ({ onChangeTitle }) => {
     }
   }
 
+  const handlerSubmit = (event: React.FormEvent) => {
+    event.preventDefault()
+  }
+
   return (
-      <form>
+      <form onSubmit={handlerSubmit}>
           <input
             value={title}
             onChange={changeHandler}
