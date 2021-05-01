@@ -26,8 +26,8 @@ const CharacterList: React.FC = () => {
       <div className="Characters">
           {data?.characters.results
             .filter(
-              (char) => char.name.indexOf(title!.search, -1) !== 0
-            && char.name.indexOf(title!.search) !== -1,
+              (char) => char.name.indexOf(title!.search, 0) !== 0
+            && char.name.indexOf(title!.search, 0) !== -1,
             )
             .filter((char) => !delitedChars.includes(char.id))
             .map((character) => (

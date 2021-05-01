@@ -4,16 +4,19 @@ import CharacterList from '../Components/CharacterList'
 import FormComponent from '../Components/Form'
 import RickAndMorty from '../Components/RickAndMorty'
 import { TitleProvider } from '../context'
+import { RickAndMortyProvider } from '../CharacterContest'
 
 function App() {
   return (
-      <TitleProvider>
-          <div className="App">
-              <FormComponent />
-              <CharacterList />
-              <RickAndMorty />
-          </div>
-      </TitleProvider>
+      <RickAndMortyProvider>
+          <TitleProvider>
+              <div className="App">
+                  <FormComponent />
+                  <CharacterList />
+                  <RickAndMorty />
+              </div>
+          </TitleProvider>
+      </RickAndMortyProvider>
   )
 }
 
