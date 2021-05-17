@@ -1,12 +1,16 @@
 import React from 'react'
-import { useRickAndMorty } from '../../CharacterContest'
+import { useRickAndMorty } from '../RickAndMortyProvider'
+import './style.css'
 
 function RickAndMorty() {
   const { Rick, Morty } = useRickAndMorty()
   return (
       <div className="RickAndMorty">
-          <div className="Rick"><img alt="Rick Sanchez" src={Rick} /></div>
-          <div className="Morty"><img alt="Morty Smith" src={Morty} /></div>
+          <h1 className="Party">PARTY</h1>
+          <div className="RickAndMorty2">
+              <div className="RickAndMorty3"><img alt="Rick Sanchez" src={Rick} /><h1 className="Rick">RICK</h1></div>
+              <div className="RickAndMorty3"><img alt="Morty Smith" src={Morty} /><h1 className="Morty">MORTY</h1></div>
+          </div>
       </div>
   )
 }

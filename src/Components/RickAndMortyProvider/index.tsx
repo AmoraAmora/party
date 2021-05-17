@@ -1,14 +1,15 @@
 import React, {
   createContext, ReactNode, useContext, useState,
 } from 'react'
+import { Context } from './interfaces'
 
-interface Context {
-  Rick:string;
-  Morty:string;
-  onChangePicture(value:string):void
+const defaultValue = {
+  Rick: '',
+  Morty: '',
+  onChangePicture: () => null,
 }
 
-const RickAndMortyContext = createContext<Context>({} as Context)
+const RickAndMortyContext = createContext<Context>(defaultValue)
 
 export const useRickAndMorty = () => useContext(RickAndMortyContext)
 

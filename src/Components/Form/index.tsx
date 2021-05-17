@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useTitle } from '../../context'
+import { useTitle } from '../TitleProvider'
+import './style.css'
 
 const FormComponent: React.FC = () => {
   const [title, setTitle] = useState('')
@@ -8,13 +9,7 @@ const FormComponent: React.FC = () => {
 
   const changeHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value)
-  }
-
-  const KeyPressHandler = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      onChangeTitle(title)
-      setTitle('')
-    }
+    onChangeTitle(title)
   }
 
   const handlerSubmit = (event: React.FormEvent) => {
@@ -24,12 +19,12 @@ const FormComponent: React.FC = () => {
   return (
       <form onSubmit={handlerSubmit}>
           <input
+            className="Search"
             value={title}
             onChange={changeHandler}
-            type="text"
-            onKeyPress={KeyPressHandler}
           />
       </form>
   )
 }
+
 export default FormComponent

@@ -3,7 +3,8 @@ import { useQuery } from '@apollo/client'
 import { CharactersData, CharactersVars } from './Interfaces'
 import CharacterItem from './CharacterItem'
 import { CHAR_GET } from './Query'
-import { useTitle } from '../../context'
+import { useTitle } from '../TitleProvider'
+import './style.css'
 
 const CharacterList: React.FC = () => {
   const title = useTitle()
@@ -22,12 +23,14 @@ const CharacterList: React.FC = () => {
     }
   }
 
+  if (title.search === '') return (null)
+
   return (
       <div className="Characters">
           {data?.characters.results
             .filter(
-              (char) => char.name.indexOf(title!.search, 0) !== 0
-            && char.name.indexOf(title!.search, 0) !== -1,
+              (char) => char.name.toUpperCase().includes(title!.search.toUpperCase(), 0)
+            && char.name.toUpperCase().includes(title!.search.toUpperCase(), 0),
             )
             .filter((char) => !delitedChars.includes(char.id))
             .map((character) => (
