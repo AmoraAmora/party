@@ -18,9 +18,10 @@ export function RickAndMortyProvider({ children }:{ children: ReactNode }) {
   const [morty, setMorty] = useState('')
 
   const onChangePicture = (value: string) => {
-    if (value === 'Rick Sanchez') { setRick(value) }
-    if (value === 'Morty Smith') { setMorty(value) }
+    if (value === 'https://rickandmortyapi.com/api/character/avatar/1.jpeg') { setRick('url(https://rickandmortyapi.com/api/character/avatar/1.jpeg)') }
+    if (value === 'https://rickandmortyapi.com/api/character/avatar/2.jpeg') { setMorty('url(https://rickandmortyapi.com/api/character/avatar/2.jpeg)') }
   }
+  // {background: url(morty)}
 
   return (
       <RickAndMortyContext.Provider value={{

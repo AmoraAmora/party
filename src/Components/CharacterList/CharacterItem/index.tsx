@@ -11,12 +11,12 @@ function CharacterItem(props: ItemProps) {
     image, name, id, onDelete,
   } = props
 
-  const handleClick = () => {
-    onDelete(id)
+  const handleClick = (i:number) => {
+    onDelete(i)
   }
 
-  const onPictureClickListener = () => {
-    onChangePicture(image)
+  const onPictureClickListener = (img:string) => {
+    onChangePicture(img)
   }
 
   return (
@@ -24,14 +24,14 @@ function CharacterItem(props: ItemProps) {
           <Button
             className="CharacterButton"
             type="button"
-            onClick={onPictureClickListener}
+            onClick={() => onPictureClickListener(image)}
           >
               <img className="CharacterImage" src={image} alt={name} />
           </Button>
           <button
             className="DeleteCharacterButton"
             type="button"
-            onClick={handleClick}
+            onClick={() => handleClick(id)}
           >
               x
           </button>

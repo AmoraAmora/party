@@ -23,6 +23,7 @@
   width: 150px;
   height: 190px;
   background-color: darkgray;
+  background-size: cover;
 }
 
 .Morty{
