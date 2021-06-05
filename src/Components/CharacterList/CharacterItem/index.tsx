@@ -1,5 +1,6 @@
+import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
-import React from 'react'
+
 import { useRickAndMorty } from '../../RickAndMortyProvider'
 import { ItemProps } from './interfaces'
 import './style.css'
@@ -7,24 +8,29 @@ import './style.css'
 function CharacterItem(props: ItemProps) {
   const { onChangePicture } = useRickAndMorty()
 
+  const [isDelit, setIsDelit] = useState(false)
+
   const {
     image, name, id, onDelete,
   } = props
 
   const handleClick = (i:number) => {
     onDelete(i)
+    setIsDelit(true)
   }
 
-  const onPictureClickListener = (img:string) => {
-    onChangePicture(img)
+  const onPictureClickListener = (charName:string, charImg: string) => {
+    onChangePicture(charName, charImg)
   }
+
+  if (isDelit) return (null)
 
   return (
       <div className="Character">
           <Button
             className="CharacterButton"
             type="button"
-            onClick={() => onPictureClickListener(image)}
+            onClick={() => onPictureClickListener(name, image)}
           >
               <img className="CharacterImage" src={image} alt={name} />
           </Button>
@@ -32,8 +38,7 @@ function CharacterItem(props: ItemProps) {
             className="DeleteCharacterButton"
             type="button"
             onClick={() => handleClick(id)}
-          >
-              x
+          >х
           </button>
       </div>
   )

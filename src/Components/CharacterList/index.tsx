@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
+
 import { CharactersData, CharactersVars } from './Interfaces'
 import CharacterItem from './CharacterItem'
 import { CHAR_GET } from './Query'
@@ -10,16 +11,16 @@ const CharacterList: React.FC = () => {
   const title = useTitle()
 
   const { data } = useQuery<CharactersData, CharactersVars>(CHAR_GET, {
-    variables: { page: 1 },
+    variables: { name: title.search },
   })
   const [delitedChars, setDelitedChars] = useState<number[]>([])
 
   const deleteChar = (id:number) => {
     if (!delitedChars.includes(id)) {
-      setDelitedChars((prevChars) => {
-        prevChars.push(id)
-        return prevChars
-      })
+      const arr = delitedChars
+      arr.push(id)
+      arr.push(0)
+      setDelitedChars(arr)
     }
   }
 
@@ -28,10 +29,6 @@ const CharacterList: React.FC = () => {
   return (
       <div className="Characters">
           {data?.characters.results
-            .filter(
-              (char) => char.name.toUpperCase().includes(title!.search.toUpperCase(), 0)
-            && char.name.toUpperCase().includes(title!.search.toUpperCase(), 0),
-            )
             .filter((char) => !delitedChars.includes(char.id))
             .map((character) => (
                 <CharacterItem

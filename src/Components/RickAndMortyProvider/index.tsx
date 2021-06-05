@@ -17,11 +17,10 @@ export function RickAndMortyProvider({ children }:{ children: ReactNode }) {
   const [rick, setRick] = useState('')
   const [morty, setMorty] = useState('')
 
-  const onChangePicture = (value: string) => {
-    if (value === 'https://rickandmortyapi.com/api/character/avatar/1.jpeg') { setRick('url(https://rickandmortyapi.com/api/character/avatar/1.jpeg)') }
-    if (value === 'https://rickandmortyapi.com/api/character/avatar/2.jpeg') { setMorty('url(https://rickandmortyapi.com/api/character/avatar/2.jpeg)') }
+  const onChangePicture = (name: string, image: string) => {
+    if (name.toUpperCase().includes('RICK')) { setRick(`url(${image})`) }
+    if (name.toUpperCase().includes('MORTY')) { setMorty(`url(${image})`) }
   }
-  // {background: url(morty)}
 
   return (
       <RickAndMortyContext.Provider value={{

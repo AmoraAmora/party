@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const CHAR_GET = gql`
-  query GetChar($page: Int!) {
-    characters(page: $page) {
+  query GetChar($name: String!) {
+    characters(filter: { name: $name }) {
       results {
         name
         image

@@ -1,5 +1,5 @@
 export interface Context {
   Rick:string;
   Morty:string;
-  onChangePicture(value:string):void
+  onChangePicture(value:string, image:string):void
 }

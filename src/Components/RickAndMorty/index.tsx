@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { useRickAndMorty } from '../RickAndMortyProvider'
 import './style.css'
 

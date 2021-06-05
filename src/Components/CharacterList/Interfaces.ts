@@ -10,7 +10,7 @@ export type CharactersData = {
   characters: Characters;
 }
 export interface CharactersVars {
-  page: number;
+  name: string;
 }
 
 export interface ListProps {
